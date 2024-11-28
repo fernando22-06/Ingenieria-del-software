@@ -104,5 +104,39 @@ Mantenimiento
     <p>
         https://drive.google.com/file/d/1BLpKLZNBBZo1nSp8dTzUGWCuSVUJyzHA/view?usp=drive_link>mis  intereses profesionales</a>
     </p>
+<h1> 
+    Tabla 1
+</h1>
+<p>
+    import time
+import sqlite3 as sql
+
+def createDB():
+    conn = sql.connect("autoconocimiento.db")
+    print("Base de datos de autoconocimiento creada")
+    conn.commit()
+    conn.close()
+
+def createTable():
+    conn = sql.connect("autoconocimiento.db")
+    cursor = conn.cursor()
+    cursor.execute("""CREATE TABLE contributions (
+    contribution_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER,
+    description TEXT NOT NULL,
+    impact_area TEXT,
+    status TEXT DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+""")
+    print("Tabala creada")
+    conn.commit()
+    conn.close()
+
+if __name__ == "__main__":
+            createDB()
+            createTable()
+</p>    
 </body>
 </html>
